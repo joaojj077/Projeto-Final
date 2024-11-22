@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SnailCorreios - Rastreamento</title>
+    <link rel="icon" href="https://i.im.ge/2024/09/17/fv9Mp8.mascote2.png" type="image/png">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(to right, #2C3E50, #4A90E2);
+            margin: 0;
+            padding: 0;
+            color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            max-width: 600px;
+            padding: 20px;
+            background-color: #1E293B;
+            border-radius: 8px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+        h1 {
+            color: #4A90E2;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group input {
+            width: 80%;
+            padding: 12px;
+            font-size: 1em;
+            border: none;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            background-color: #334155;
+            color: #fff;
+        }
+        .form-group button {
+            padding: 12px 20px;
+            font-size: 1em;
+            background-color: #4A90E2;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            color: #fff;
+            transition: background-color 0.3s ease;
+        }
+        .form-group button:hover {
+            background-color: #357ABD;
+        }
+        .status-container {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #4A90E2;
+            border-radius: 6px;
+            color: white;
+            font-size: 1.1em;
+            display: none;
+            text-align: left;
+        }
+        .status-container h2 {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+        .status-container p {
+            margin: 5px 0;
+        }
+        footer {
+            margin-top: 20px;
+            font-size: 0.8em;
+            text-align: center;
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Rastreamento de Pedido</h1>
+        <div class="form-group">
+            <input type="text" id="tracking-code" placeholder="Digite o código de rastreamento">
+        </div>
+        <div class="form-group">
+            <button onclick="trackOrder()">Rastrear Pedido</button>
+        </div>
+        <div id="status-container" class="status-container">
+            <h2>Detalhes do Pedido</h2>
+            <p id="order-status"></p>
+            <p id="order-customer"></p>
+            <p id="order-estimated"></p>
+            <p id="order-info"></p>
+        </div>
+    </div>
+    </footer>
+    <script>
+        const orderDetails = {
+            "ENV123": {
+                customer: "Carlos Silva",
+                info: "Envelope, Documentos.",
+            },
+            "TOY456": {
+                customer: "Ana Souza",
+                info: "Brinquedos, Infantil.",
+            },
+            "TV789": {
+                customer: "João Pedro",
+                info: "Televisão, Eletronicos.",
+            },
+            "FRG101": {
+                customer: "Maria Clara",
+                info: "Geladeira, Eletrodomesticos.",
+            },
+        };
+
+        function getRandomStatus() {
+            const statuses = ["Empacotando", "Enviado", "Entregue"];
+            return statuses[Math.floor(Math.random() * statuses.length)];
+        }
+        function getRandomDeliveryDate() {
+            const daysToAdd = Math.floor(Math.random() * 5) + 1; // Entre 1 e 5 dias
+            const date = new Date();
+            date.setDate(date.getDate() + daysToAdd);
+            return date.toLocaleDateString("pt-BR", { weekday: "long", day: "numeric", month: "long" });
+        }
+
+        function trackOrder() {
+            const codeInput = document.getElementById("tracking-code").value.trim();
+            const statusContainer = document.getElementById("status-container");
+            const statusText = document.getElementById("order-status");
+            const customerText = document.getElementById("order-customer");
+            const estimatedText = document.getElementById("order-estimated");
+            const infoText = document.getElementById("order-info");
+
+            if (!orderDetails[codeInput]) {
+                statusContainer.style.display = "block";
+                statusText.textContent = "Código inválido. Por favor, tente novamente.";
+                customerText.textContent = "";
+                estimatedText.textContent = "";
+                infoText.textContent = "";
+                return;
+            }
+
+            const details = orderDetails[codeInput];
+            const status = getRandomStatus();
+            const deliveryDate = getRandomDeliveryDate();
+
+            statusText.textContent = `Status: ${status}`;
+            customerText.textContent = `Cliente: ${details.customer}`;
+            estimatedText.textContent = `Data estimada de entrega: ${deliveryDate}`;
+            infoText.textContent = `Informações adicionais: ${details.info}`;
+            statusContainer.style.display = "block";
+        }
+    </script>
+</body>
+</html>

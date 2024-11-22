@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SnailCorreios - Seleção de Itens</title>
+    <link rel="icon" href="https://i.im.ge/2024/09/17/fv9Mp8.mascote2.png" type="image/png">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(to right, #2C3E50, #4A90E2);
+            color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        .h {
+            text-align: left;
+            background-color: #1E293B;
+            color: #4A90E2;
+            padding: 20px;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        .c {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #1E293B;
+            border-radius: 8px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+        .g {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .ic {
+            background-color: #334155;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            padding: 10px;
+        }
+        .ii {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 8px;
+        }
+        .it {
+            font-size: 1em;
+            color: #4A90E2;
+            margin-bottom: 10px;
+        }
+        .is {
+            padding: 8px 12px;
+            font-size: 0.9em;
+            background-color: #4A90E2;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .is:hover {
+            background-color: #357ABD;
+        }
+        .s {
+            background-color: #1E293B;
+            padding: 15px;
+            color: #f0f0f0;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+        .gc {
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #FFD700;
+            color: #333;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .gc:hover {
+            background-color: #FFC107;
+        }
+        .oc {
+            margin-top: 15px;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <div class="h">Selecione seu item - SnailCorreios</div>
+    <div class="c">
+        <h2 style="color: #4A90E2; font-size: 1.3em; margin-bottom: 15px;">Escolha apenas um item para seu pedido</h2>
+        
+        <div class="g">
+            <div class="ic">
+                <img class="ii" id="e-img" src="https://i.im.ge/2024/11/05/kHIvQW.imagem-2024-11-04-170720483.png" alt="Envelope">
+                <div class="it">Envelope</div>
+                <button class="is" onclick="selectItem('Envelope', 'Documentos', '50g', '1-3 dias úteis', 'ENV123', 'https://i.im.ge/2024/11/05/kHIvQW.imagem-2024-11-04-170720483.png')">Selecionar</button>
+            </div>
+            <div class="ic">
+                <img class="ii" id="b-img" src="https://i.im.ge/2024/11/05/kHIJL0.imagem-2024-11-04-170815395.png" alt="Brinquedo">
+                <div class="it">Brinquedo</div>
+                <button class="is" onclick="selectItem('Brinquedo', 'Infantil', '300g', '3-5 dias úteis', 'TOY456', 'https://i.im.ge/2024/11/05/kHIJL0.imagem-2024-11-04-170815395.png')">Selecionar</button>
+            </div>
+            <div class="ic">
+                <img class="ii" id="t-img" src="https://i.im.ge/2024/11/05/kHI4nc.imagem-2024-11-04-171045909.png" alt="Televisão">
+                <div class="it">Televisão</div>
+                <button class="is" onclick="selectItem('Televisão', 'Eletrônico', '7kg', '5-7 dias úteis', 'TV789', 'https://i.im.ge/2024/11/05/kHI4nc.imagem-2024-11-04-171045909.png')">Selecionar</button>
+            </div>
+            <div class="ic">
+                <img class="ii" id="g-img" src="https://i.im.ge/2024/11/05/kHIHRr.imagem-2024-11-04-170636980.png" alt="Geladeira">
+                <div class="it">Geladeira</div>
+                <button class="is" onclick="selectItem('Geladeira', 'Eletrodoméstico', '60kg', '7-10 dias úteis', 'FRG101', 'https://i.im.ge/2024/11/05/kHIHRr.imagem-2024-11-04-170636980.png')">Selecionar</button>
+            </div>
+        </div>
+
+        <div class="s">
+            <h3 style="color: #4A90E2;">Resumo do Pedido</h3>
+            <p id="si">Item Selecionado: Nenhum</p>
+            <p id="tp">Tipo do Pedido: -</p>
+            <p id="pw">Peso: -</p>
+            <p id="dt">Prazo de Entrega: -</p>
+            <p id="ic">Código do Pedido: -</p>
+            <div class="ii" id="s-img" style="width: 100px; height: 100px; margin-top: 10px;"></div>
+            <a href="Rastreamento.html">
+                <button class="gc">Rastrear</button>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function selectItem(item, type, weight, deliveryTime, code, imageUrl) {
+            document.getElementById("si").textContent = "Item Selecionado: " + item;
+            document.getElementById("tp").textContent = "Tipo do Pedido: " + type;
+            document.getElementById("pw").textContent = "Peso: " + weight;
+            document.getElementById("dt").textContent = "Prazo de Entrega: " + deliveryTime;
+            document.getElementById("ic").textContent = "Código do Pedido: " + code;
+            document.getElementById("s-img").style.backgroundImage = `url(${imageUrl})`;
+        }
+    </script>
+</body>
+</html>
